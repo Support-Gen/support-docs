@@ -1,11 +1,11 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { MantineProvider } from '@mantine/core'
 import { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
+    <MantineProvider>      
       <Component {...pageProps} />
-    </ChakraProvider>
+    </MantineProvider>
   )
 }
 

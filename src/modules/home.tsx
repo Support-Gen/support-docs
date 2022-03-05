@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box } from "@mantine/core";
 import { NextPage } from "next";
 
 const Home: NextPage = () => {
