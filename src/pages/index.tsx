@@ -2,12 +2,15 @@ import { Box } from '@mantine/core'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import NarrowLayout from '../layouts/Narrow/Narrow.Layout'
+import Home from '../modules/home/home'
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
-    <Box></Box>
+    <NarrowLayout>
+        <Home></Home>
+    </NarrowLayout>
   )
 }
 
-export default Home
+export default HomePage
