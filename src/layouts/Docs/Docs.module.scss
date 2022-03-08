@@ -1,8 +1,22 @@
 .nav-module, .nav-module button {
     border-radius: 10px;
     border-bottom: 0;
+    &.active button {
+        background-color: #eee;
+    }
 }
 
 .nav-feature {
     border-left: 1px solid #ddd;
+    color: rgb(100, 100, 100);
+
+    &:hover span {
+        color: rgb(10, 10, 10);
+    }
+
+    &.active span{
+        font-weight: 600;
+        color: rgb(80, 83, 255);
+    }
+
 }

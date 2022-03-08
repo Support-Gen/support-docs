@@ -1,4 +1,4 @@
-import { Accordion, Anchor, AppShell, Box, Burger, Group, Header, MediaQuery, Navbar, useMantineTheme } from "@mantine/core"
+import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme } from "@mantine/core"
 import { useState } from "react";
 import Navigation from "../../shared/Navigation"
 import styles from "./Docs.module.scss"
@@ -58,24 +58,31 @@ const navItems = [
     }
 ]
 
-const NavFeature = ({ title, url }: { title: string, url: string}) => {
+const NavFeature = ({ title, url, isActive }: { title: string, url: string, isActive: boolean }) => {
     return (
-        <a href={url}>
-            <Box className={styles['nav-feature']} style={{ padding: 10, paddingInline: 20 }}>
-                {title}
+        <Anchor href={url} variant={'text'}>
+            <Box className={`${styles['nav-feature']} ${isActive ? styles['active'] : ''}`} style={{ paddingBlock: 5, paddingInline: 20 }}>
+                <Text component="span">
+                    {title}
+                </Text>
             </Box>
-        </a>
+        </Anchor>
     )
 }
 
 const DocsLayout = ({ children }: any) => {
     const [opened, setOpened] = useState(false);
     const theme = useMantineTheme();
+    let activeModule = 0;
+    let activeFeature = 0;
 
     return (
         <AppShell
             navbarOffsetBreakpoint="sm"
             fixed
+            styles={(theme) => ({
+                main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+            })}
             navbar={
                 <Navbar
                     padding="md"
@@ -83,14 +90,14 @@ const DocsLayout = ({ children }: any) => {
                     hidden={!opened}
                     width={{ sm: 250, lg: 350 }}
                 >
-                    <Accordion initialItem={0} iconPosition="right">
+                    <Accordion initialItem={activeModule} iconPosition="right">
                         {
                             navItems.map((item: any, index: number) => {
                                 return (
-                                    <Accordion.Item label={item.title} key={index} className={styles['nav-module']}>
+                                    <Accordion.Item label={item.title} key={index} className={`${styles['nav-module']} ${styles[(activeModule == index ? 'active': '')]}`}>
                                         {item.features.map((feature: any, i: number) => {
                                             return (
-                                                <NavFeature title={feature.title} url={""} key={i}></NavFeature>
+                                                <NavFeature title={feature.title} url={""} isActive={activeFeature == i} key={i}></NavFeature>
                                             )
                                         })}
 
