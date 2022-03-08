@@ -31,7 +31,7 @@ const navItems = [
         ]
     },
     {
-        title: "Patients",
+        title: "Appointments",
         description: "Manage patients easily.",
         features: [
             {
