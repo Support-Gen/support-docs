@@ -120,13 +120,11 @@ const DocsLayout = ({ children }: any) => {
                             mr="xl"
                             />
                         </MediaQuery>
-                        <Navigation></Navigation>
+                        <Navigation hasSearch={true}></Navigation>
                     </div>
                 </Header>
             }
-        >
-            <main>{children}</main>
-        </AppShell>
+        >{children}</AppShell>
     )
 }
 
