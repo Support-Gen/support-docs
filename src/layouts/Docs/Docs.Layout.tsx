@@ -60,7 +60,7 @@ const navItems = [
 
 const NavFeature = ({ title, url, isActive }: { title: string, url: string, isActive: boolean }) => {
     return (
-        <Anchor href={url} variant={'text'}>
+        <Anchor href={`${url.toLowerCase().replace(" ", "-")}`} variant={'text'}>
             <Box className={`${styles['nav-feature']} ${isActive ? styles['active'] : ''}`} style={{ paddingBlock: 5, paddingInline: 20 }}>
                 <Text component="span">
                     {title}
@@ -95,9 +95,10 @@ const DocsLayout = ({ children }: any) => {
                             navItems.map((item: any, index: number) => {
                                 return (
                                     <Accordion.Item label={item.title} key={index} className={`${styles['nav-module']} ${styles[(activeModule == index ? 'active': '')]}`}>
+                                        <NavFeature title={'Overview'} url={'overview'} isActive={false}></NavFeature>
                                         {item.features.map((feature: any, i: number) => {
                                             return (
-                                                <NavFeature title={feature.title} url={""} isActive={activeFeature == i} key={i}></NavFeature>
+                                                <NavFeature title={feature.title} url={feature.title} isActive={activeFeature == i} key={i}></NavFeature>
                                             )
                                         })}
 
