@@ -18,7 +18,7 @@ const Feature: NextPage = () => {
     return (
         <>
             <Title>{ feature.title }</Title>
-            <Text>{ feature.description }</Text>
+            <Text mb={'lg'}>{ feature.description }</Text>
             <Group>
                 {
                     feature.steps.map((step, i) => {

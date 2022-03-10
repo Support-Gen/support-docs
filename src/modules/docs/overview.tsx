@@ -33,7 +33,7 @@ const Overview: NextPage = () => {
     return (
         <>
             <Title>{ module.title }</Title>
-            <Text>{ module.description }</Text>
+            <Text mb={'lg'}>{ module.description }</Text>
             <Group>
                 {
                     module.features.map((feature, i) => {
