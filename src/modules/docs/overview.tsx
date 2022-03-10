@@ -1,15 +1,6 @@
 import { Autocomplete, Box, Card, Center, Text, SimpleGrid, Space, Title, Anchor, Breadcrumbs, Container, Group } from "@mantine/core";
 import { NextPage } from "next";
 
-const items = [
-    { title: 'Product Guide', href: 'http://localhost:3000/docs/asd' },
-    { title: 'Patients', href: 'http://localhost:3000/docs/asd' }
-].map((item, index) => (
-    <Anchor href={item.href} key={index}>
-        {item.title}
-    </Anchor>
-));
-
 
 const Overview: NextPage = () => {
     let module = {
@@ -40,8 +31,7 @@ const Overview: NextPage = () => {
     }
 
     return (
-        <Container size={'lg'}>
-            <Breadcrumbs>{items}</Breadcrumbs>
+        <>
             <Title>{ module.title }</Title>
             <Text>{ module.description }</Text>
             <Group>
@@ -58,7 +48,7 @@ const Overview: NextPage = () => {
                     })
                 }
             </Group>
-        </Container>
+        </>
     );
 }
 

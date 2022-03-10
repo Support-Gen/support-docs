@@ -1,4 +1,4 @@
-import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme } from "@mantine/core"
+import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme, Breadcrumbs, Container } from "@mantine/core"
 import { useState } from "react";
 import Navigation from "../../shared/Navigation"
 import styles from "./Docs.module.scss"
@@ -7,10 +7,12 @@ const navItems = [
     {
         title: "Patients",
         description: "Manage patients easily.",
+        route: "patients",
         features: [
             {
                 title: "Search patients",
                 description: "Search patients by keywords.",
+                route: "search-patients",
                 steps: [
                     {
                         title: "Browser URL",
@@ -21,6 +23,7 @@ const navItems = [
             {
                 title: "Add patients",
                 description: "Add a new patient",
+                route: "add-patients",
                 steps: [
                     {
                         title: "Browser URL",
@@ -33,10 +36,12 @@ const navItems = [
     {
         title: "Appointments",
         description: "Manage patients easily.",
+        route: "appointments",
         features: [
             {
                 title: "Search patients",
                 description: "Search patients by keywords.",
+                route: "search-patients",
                 steps: [
                     {
                         title: "Browser URL",
@@ -47,6 +52,7 @@ const navItems = [
             {
                 title: "Add patients",
                 description: "Add a new patient",
+                route: "add-patients",
                 steps: [
                     {
                         title: "Browser URL",
@@ -58,9 +64,10 @@ const navItems = [
     }
 ]
 
+
 const NavFeature = ({ title, url, isActive }: { title: string, url: string, isActive: boolean }) => {
     return (
-        <Anchor href={`${url.toLowerCase().replace(" ", "-")}`} variant={'text'}>
+        <Anchor href={url} variant={'text'}>
             <Box className={`${styles['nav-feature']} ${isActive ? styles['active'] : ''}`} style={{ paddingBlock: 5, paddingInline: 20 }}>
                 <Text component="span">
                     {title}
@@ -75,6 +82,16 @@ const DocsLayout = ({ children }: any) => {
     const theme = useMantineTheme();
     let activeModule = 0;
     let activeFeature = 0;
+
+    const items = [
+        { title: 'Product Guide', route: '/' },
+        { title: 'Patients', route: '/docs/patients' },
+        { title: 'Search patients', route: '/docs/patients/search-patients' },
+    ].map((item, index) => (
+        <Anchor href={item.route} key={index}>
+            {item.title}
+        </Anchor>
+    ));
 
     return (
         <AppShell
@@ -95,10 +112,11 @@ const DocsLayout = ({ children }: any) => {
                             navItems.map((item: any, index: number) => {
                                 return (
                                     <Accordion.Item label={item.title} key={index} className={`${styles['nav-module']} ${styles[(activeModule == index ? 'active': '')]}`}>
-                                        <NavFeature title={'Overview'} url={'overview'} isActive={false}></NavFeature>
+                                        <NavFeature title={'Overview'} url={`/docs/${item.route}`} isActive={false}></NavFeature>
                                         {item.features.map((feature: any, i: number) => {
+                                            const featureRoute = `/docs/${item.route}/${feature.route}`;
                                             return (
-                                                <NavFeature title={feature.title} url={feature.title} isActive={activeFeature == i} key={i}></NavFeature>
+                                                <NavFeature title={feature.title} url={featureRoute} isActive={activeFeature == i} key={i}></NavFeature>
                                             )
                                         })}
 
@@ -125,7 +143,12 @@ const DocsLayout = ({ children }: any) => {
                     </div>
                 </Header>
             }
-        >{children}</AppShell>
+        >
+            <Container size={'lg'}>
+                <Breadcrumbs>{items}</Breadcrumbs>
+                {children}
+            </Container>
+        </AppShell>
     )
 }
 
