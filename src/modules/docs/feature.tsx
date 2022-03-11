@@ -23,10 +23,15 @@ const Feature: NextPage = () => {
                 {
                     feature.steps.map((step, i) => {
                         return (
-                            <Box key={i}>
-                                <Title>{i + 1}. {step.title}</Title>
-                                <Text>{step.description}</Text>
-                            </Box>
+                            <Group key={i} direction={'row'}>
+                                <Box>
+                                    <Title>{i + 1}. {step.title}</Title>
+                                    <Text>{step.description}</Text>
+                                </Box>
+                                <Box>
+                                    a
+                                </Box>
+                            </Group>
                         )
                     })
                 }

@@ -102,7 +102,7 @@ const DocsLayout = ({ children }: any) => {
             })}
             navbar={
                 <Navbar
-                    padding="md"
+                    px="md"
                     hiddenBreakpoint="sm"
                     hidden={!opened}
                     width={{ sm: 250, lg: 350 }}
@@ -128,7 +128,7 @@ const DocsLayout = ({ children }: any) => {
                 </Navbar>
             }
             header={
-                <Header height={70} padding="md">
+                <Header height={70} px="md">
                     <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                             <Burger
