@@ -6,7 +6,7 @@ const Navigation = ({ hasSearch } : { hasSearch?: boolean } ) => {
         <Box component="nav" style={{ paddingBlock: 15, width: '100%' }}>
             <Group direction="row" position="apart">
                 <Group direction="row">
-                    <Anchor variant={'text'} weight={'bold'} style={{marginRight: 100}}>Product Guide</Anchor>
+                    <Anchor href="/" variant={'text'} weight={'bold'} style={{marginRight: 100}}>Product Guide</Anchor>
                     {
                         (hasSearch ? 
                             <Autocomplete

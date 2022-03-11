@@ -4,16 +4,20 @@ import FeatureCard from "./featureAnchor";
 
 const features = [
     {
-        name: "Feature 1"
+        name: "Feature 1",
+        route: "feature-1"
     },
     {
-        name: "Feature 2"
+        name: "Feature 2",
+        route: "feature-2"
     },
     {
-        name: "Feature 3"
+        name: "Feature 3",
+        route: "feature-3"
     },
     {
-        name: "Feature 4"
+        name: "Feature 4",
+        route: "feature-4"
     },
 ]
 
