@@ -10,6 +10,7 @@ const Navigation = ({ hasSearch } : { hasSearch?: boolean } ) => {
                     {
                         (hasSearch ? 
                             <Autocomplete
+                                variant={"unstyled"}
                                 style={{ width: 400 }}
                                 size='md'
                                 icon={ <IoSearch></IoSearch> }

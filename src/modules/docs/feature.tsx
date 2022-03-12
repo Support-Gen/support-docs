@@ -18,8 +18,8 @@ const Feature: NextPage = () => {
         route: "search-patients",
         steps: [
             {
-                title: "Browser URL",
-                description: `Navigate to "https://my.therapyapp.ch/patients"`
+                title: "Navigate to patients",
+                description: `Open https://my.therapyapp.ch/patients in a new browser tab.`
             }
         ]
     }
@@ -32,14 +32,13 @@ const Feature: NextPage = () => {
                 { value: 'web', label: 'Web' },
                 { value: 'mobile', label: 'Mobile' }
             ]} />
-
             <Accordion offsetIcon={false} iconPosition="right" initialItem={0} multiple={true}>
                 {
                     feature.steps.map((step, i) => {
                         return (
                             <Accordion.Item key={i} label={<AccordionLabel index={i + 1} title={step.title}></AccordionLabel>}>
                                 <Title order={2}></Title>
-                                <Text>{step.description}</Text>
+                                <Text mb={'lg'}>{step.description}</Text>
                                 <Image src="/example-page-1.png" alt="example img" radius="lg"></Image>
                             </Accordion.Item>
                         )

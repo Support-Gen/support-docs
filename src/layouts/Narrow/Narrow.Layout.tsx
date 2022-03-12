@@ -6,7 +6,7 @@ import styles from "./Narrow.module.scss"
 const NarrowLayout = ({ children }: any) => {
     return (
         <Box className={styles['layout-wrapper']}>
-            <Box style={{ paddingInline: 20}}>
+            <Box style={{ height: 60}} px="md">
                 <Navigation></Navigation>
             </Box>
             <Container size={'md'} style={{ width: '100%'}}>
