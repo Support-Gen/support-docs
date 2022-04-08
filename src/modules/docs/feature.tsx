@@ -43,9 +43,15 @@ const Feature: NextPage = () => {
 
   return (
     <>
-      <Title mb={"xs"}>{feature.title}</Title>
-      <Text mb={"lg"}>{feature.description}</Text>
-      <TableOfContentsFloating links={[ {label: "Navigate to patients", link: "#", order: 1} ]}></TableOfContentsFloating>
+      <Grid justify={'space-between'}>
+        <Grid.Col span={6}>
+          <Title mb={"xs"}>{feature.title}</Title>
+          <Text mb={"lg"}>{feature.description}</Text>
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <TableOfContentsFloating links={[ {label: "Navigate to patients", link: "#", order: 1} ]}></TableOfContentsFloating>
+          </Grid.Col>
+      </Grid>
       <SegmentedControl
         mb={"lg"}
         data={[
