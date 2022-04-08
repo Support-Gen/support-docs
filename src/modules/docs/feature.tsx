@@ -17,6 +17,7 @@ import {
   SegmentedControl,
 } from "@mantine/core";
 import { NextPage } from "next";
+import { TableOfContentsFloating } from "../../shared/TableOfContents";
 
 const AccordionLabel = ({ index, title }: { index: number; title: string }) => {
   return (
@@ -44,6 +45,7 @@ const Feature: NextPage = () => {
     <>
       <Title mb={"xs"}>{feature.title}</Title>
       <Text mb={"lg"}>{feature.description}</Text>
+      <TableOfContentsFloating links={[ {label: "Navigate to patients", link: "#", order: 1} ]}></TableOfContentsFloating>
       <SegmentedControl
         mb={"lg"}
         data={[
@@ -51,23 +53,29 @@ const Feature: NextPage = () => {
           { value: "mobile", label: "Mobile" },
         ]}
       />
-      {feature.steps.map((step, i) => {
-        return (
-            <SimpleGrid cols={2} key={i}>
-                <div>
-                    <Title order={2}>{i + 1} {step.title}</Title>
+      <div>
+        <SimpleGrid cols={2}>
+            <div>
+            {feature.steps.map((step, i) => {
+                return (
+                <div key={i}>
+                    <Title order={2}>
+                    {i + 1} {step.title}
+                    </Title>
                     <Text mb={"lg"}>{step.description}</Text>
                 </div>
-                <div>
-                    <Image
-                        src="/example-page-1.png"
-                        alt="example img"
-                        radius="lg"
-                    ></Image>
-                </div>
-            </SimpleGrid>
-        );
-      })}
+                );
+            })}
+            </div>
+            <div style={{ }}>
+            <Image
+                src="/example-page-1.png"
+                alt="example img"
+                radius="lg"
+            ></Image>
+            </div>
+        </SimpleGrid>
+      </div>
     </>
   );
 };
