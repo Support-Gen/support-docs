@@ -48,12 +48,14 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface TableOfContentsFloatingProps {
+  activeIndex: number, 
   links: { label: string; link: string; order: number }[];
 }
 
-export function TableOfContentsFloating({ links }: TableOfContentsFloatingProps) {
+export function TableOfContentsFloating({ activeIndex, links }: TableOfContentsFloatingProps) {
   const { classes, cx } = useStyles();
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(activeIndex);
+  
 
   const items = links.map((item, index) => (
     <Box<'a'>

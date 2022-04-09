@@ -49,7 +49,7 @@ const Feature: NextPage = () => {
           <Text mb={"lg"}>{feature.description}</Text>
         </Grid.Col>
         <Grid.Col span={4}>
-          <TableOfContentsFloating links={[ {label: "Navigate to patients", link: "#", order: 1} ]}></TableOfContentsFloating>
+          <TableOfContentsFloating activeIndex={0} links={[ { label: "Navigate to patients", link: "#", order: 1 } ]}></TableOfContentsFloating>
           </Grid.Col>
       </Grid>
       <SegmentedControl
