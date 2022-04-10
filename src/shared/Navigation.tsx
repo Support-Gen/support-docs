@@ -1,4 +1,4 @@
-import { Anchor, Autocomplete, Box, Group } from "@mantine/core";
+import { Anchor, Autocomplete, Box, Container, Group } from "@mantine/core";
 import {IoSearch} from 'react-icons/io5'
 
 const Navigation = ({ hasSearch } : { hasSearch?: boolean } ) => {
@@ -6,7 +6,9 @@ const Navigation = ({ hasSearch } : { hasSearch?: boolean } ) => {
         <Box component="nav" style={{ paddingBlock: 15, width: '100%' }}>
             <Group direction="row" position="apart">
                 <Group direction="row">
-                    <Anchor href="/" variant={'text'} weight={'bold'} style={{marginRight: 100}}>Product Guide</Anchor>
+                    <Box sx={() => ({width: '300px'})}>
+                        <Anchor href="/" variant={'text'} weight={'bold'}>Product Guide</Anchor>
+                    </Box>
                     {
                         (hasSearch ? 
                             <Autocomplete

@@ -13,6 +13,7 @@ import {
   Group,
   Grid,
   Image,
+  Stack,
   Accordion,
   SegmentedControl,
 } from "@mantine/core";
@@ -43,25 +44,11 @@ const Feature: NextPage = () => {
 
   return (
     <>
-      <Grid justify={'space-between'}>
-        <Grid.Col span={6}>
-          <Title mb={"xs"}>{feature.title}</Title>
-          <Text mb={"lg"}>{feature.description}</Text>
-        </Grid.Col>
-        <Grid.Col span={4}>
-          <TableOfContentsFloating activeIndex={0} links={[ { label: "Navigate to patients", link: "#", order: 1 } ]}></TableOfContentsFloating>
-          </Grid.Col>
-      </Grid>
-      <SegmentedControl
-        mb={"lg"}
-        data={[
-          { value: "web", label: "Web" },
-          { value: "mobile", label: "Mobile" },
-        ]}
-      />
-      <div>
-        <SimpleGrid cols={2}>
-            <div>
+      <Title mb={"xs"}>{feature.title}</Title>
+      <Text mb={"lg"}>{feature.description}</Text>
+      <Grid>
+        <Grid.Col span={5}>
+          <div>
             {feature.steps.map((step, i) => {
                 return (
                 <div key={i}>
@@ -72,16 +59,34 @@ const Feature: NextPage = () => {
                 </div>
                 );
             })}
+          </div>
+        </Grid.Col>
+        <Grid.Col span={7}>
+          <Stack align={'center'}>
+            <div>
+              <SegmentedControl
+                mb={"md"}
+                data={[
+                  { value: "web", label: "Web" },
+                  { value: "mobile", label: "Mobile" },
+                ]}
+              />
             </div>
-            <div style={{ }}>
-            <Image
+            <Box
+              sx={() => ({
+                borderRadius: '20px',
+                boxShadow: '0px 8px 18px #00000020'
+              })}
+            >
+              <Image
                 src="/example-page-1.png"
                 alt="example img"
-                radius="lg"
-            ></Image>
-            </div>
-        </SimpleGrid>
-      </div>
+                radius={'lg'}
+              ></Image>
+            </Box>
+          </Stack>
+        </Grid.Col>
+      </Grid>
     </>
   );
 };

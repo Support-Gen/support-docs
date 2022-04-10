@@ -1,4 +1,4 @@
-import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme, Breadcrumbs, Container } from "@mantine/core"
+import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme, Breadcrumbs, Container, ScrollArea } from "@mantine/core"
 import { useState } from "react";
 import Navigation from "../../shared/Navigation"
 import styles from "./Docs.module.scss"
@@ -98,7 +98,7 @@ const DocsLayout = ({ children }: any) => {
             navbarOffsetBreakpoint="sm"
             fixed
             styles={(theme) => ({
-                main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+                main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.white },
             })}
             navbar={
                 <Navbar
@@ -107,7 +107,7 @@ const DocsLayout = ({ children }: any) => {
                     hidden={!opened}
                     width={{ sm: 250, lg: 350 }}
                 >
-                    <Accordion initialItem={activeModule} iconPosition="right">
+                    {/* <Accordion initialItem={activeModule} iconPosition="right">
                         {
                             navItems.map((item: any, index: number) => {
                                 return (
@@ -124,7 +124,10 @@ const DocsLayout = ({ children }: any) => {
                                 );
                             })
                         }
-                    </Accordion>
+                    </Accordion> */}
+                    <Navbar.Section grow component={ScrollArea}>
+                        
+                    </Navbar.Section>
                 </Navbar>
             }
             header={
@@ -144,10 +147,10 @@ const DocsLayout = ({ children }: any) => {
                 </Header>
             }
         >
-            <Container size={'xl'}>
+            <Box mx={50}>
                 <Breadcrumbs mb={'lg'}>{items}</Breadcrumbs>
                 {children}
-            </Container>
+            </Box>
         </AppShell>
     )
 }
