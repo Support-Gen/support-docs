@@ -1,4 +1,4 @@
-import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme, Breadcrumbs, Container, ScrollArea } from "@mantine/core"
+import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme, Breadcrumbs, Container, ScrollArea, createStyles } from "@mantine/core"
 import { useState } from "react";
 import { CgNotes } from "react-icons/cg";
 import { LinksGroup } from "../../shared/NavbarLinksGoup";
@@ -11,7 +11,8 @@ const navItems = [
         description: "Manage patients easily.",
         link: "patients",
         icon: CgNotes,
-        features: [
+        initiallyOpened: true,
+        links: [
             {
                 label: "Search patients",
                 description: "Search patients by keywords.",
@@ -41,7 +42,7 @@ const navItems = [
         description: "Manage patients easily.",
         link: "appointments",
         icon: CgNotes,
-        features: [
+        links: [
             {
                 label: "Search patients",
                 description: "Search patients by keywords.",
@@ -68,6 +69,42 @@ const navItems = [
     }
 ]
 
+const useStyles = createStyles((theme) => ({
+    navbar: {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
+      paddingBottom: 0,
+    },
+  
+    header: {
+      padding: theme.spacing.md,
+      paddingTop: 0,
+      marginLeft: -theme.spacing.md,
+      marginRight: -theme.spacing.md,
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      borderBottom: `1px solid ${
+        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+      }`,
+    },
+  
+    links: {
+      marginLeft: -theme.spacing.md,
+      marginRight: -theme.spacing.md,
+    },
+  
+    linksInner: {
+      paddingTop: theme.spacing.xl,
+      paddingBottom: theme.spacing.xl,
+    },
+  
+    footer: {
+      marginLeft: -theme.spacing.md,
+      marginRight: -theme.spacing.md,
+      borderTop: `1px solid ${
+        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+      }`,
+    },
+  }));
+
 
 const NavFeature = ({ label, url, isActive }: { label: string, url: string, isActive: boolean }) => {
     return (
@@ -82,6 +119,8 @@ const NavFeature = ({ label, url, isActive }: { label: string, url: string, isAc
 }
 
 const DocsLayout = ({ children }: any) => {
+    const { classes } = useStyles();
+    const links = navItems.map((item) => <LinksGroup {...item} key={item.label} />);
     const [opened, setOpened] = useState(false);
     const theme = useMantineTheme();
     let activeModule = 0;
@@ -129,12 +168,8 @@ const DocsLayout = ({ children }: any) => {
                             })
                         }
                     </Accordion> */}
-                    <Navbar.Section grow component={ScrollArea}>
-                        {
-                            navItems.map((item: any, index: number) => {
-                                <LinksGroup {...item} key={item.label} />
-                            })
-                        }
+                    <Navbar.Section grow className={classes.links} component={ScrollArea}>
+                        <div className={classes.linksInner}>{links}</div>
                     </Navbar.Section>
                 </Navbar>
             }
