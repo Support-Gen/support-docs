@@ -1,32 +1,35 @@
 import { Accordion, Anchor, AppShell, Box, Burger, Text, Header, MediaQuery, Navbar, useMantineTheme, Breadcrumbs, Container, ScrollArea } from "@mantine/core"
 import { useState } from "react";
+import { CgNotes } from "react-icons/cg";
+import { LinksGroup } from "../../shared/NavbarLinksGoup";
 import Navigation from "../../shared/Navigation"
 import styles from "./Docs.module.scss"
 
 const navItems = [
     {
-        title: "Patients",
+        label: "Patients",
         description: "Manage patients easily.",
-        route: "patients",
+        link: "patients",
+        icon: CgNotes,
         features: [
             {
-                title: "Search patients",
+                label: "Search patients",
                 description: "Search patients by keywords.",
-                route: "search-patients",
+                link: "search-patients",
                 steps: [
                     {
-                        title: "Browser URL",
+                        label: "Browser URL",
                         description: `Navigate to "https://my.therapyapp.ch/patients"`
                     }
                 ]
             },
             {
-                title: "Add patients",
+                label: "Add patients",
                 description: "Add a new patient",
-                route: "add-patients",
+                link: "add-patients",
                 steps: [
                     {
-                        title: "Browser URL",
+                        label: "Browser URL",
                         description: `Navigate to "https://my.therapyapp.ch/patients/new"`
                     }
                 ]
@@ -34,28 +37,29 @@ const navItems = [
         ]
     },
     {
-        title: "Appointments",
+        label: "Appointments",
         description: "Manage patients easily.",
-        route: "appointments",
+        link: "appointments",
+        icon: CgNotes,
         features: [
             {
-                title: "Search patients",
+                label: "Search patients",
                 description: "Search patients by keywords.",
-                route: "search-patients",
+                link: "search-patients",
                 steps: [
                     {
-                        title: "Browser URL",
+                        label: "Browser URL",
                         description: `Navigate to "https://my.therapyapp.ch/patients"`
                     }
                 ]
             },
             {
-                title: "Add patients",
+                label: "Add patients",
                 description: "Add a new patient",
-                route: "add-patients",
+                link: "add-patients",
                 steps: [
                     {
-                        title: "Browser URL",
+                        label: "Browser URL",
                         description: `Navigate to "https://my.therapyapp.ch/patients/new"`
                     }
                 ]
@@ -65,12 +69,12 @@ const navItems = [
 ]
 
 
-const NavFeature = ({ title, url, isActive }: { title: string, url: string, isActive: boolean }) => {
+const NavFeature = ({ label, url, isActive }: { label: string, url: string, isActive: boolean }) => {
     return (
         <Anchor href={url} variant={'text'}>
             <Box className={`${styles['nav-feature']} ${isActive ? styles['active'] : ''}`} style={{ paddingBlock: 5, paddingInline: 20 }}>
                 <Text component="span">
-                    {title}
+                    {label}
                 </Text>
             </Box>
         </Anchor>
@@ -84,12 +88,12 @@ const DocsLayout = ({ children }: any) => {
     let activeFeature = 0;
 
     const items = [
-        { title: 'Product Guide', route: '/' },
-        { title: 'Patients', route: '/docs/patients' },
-        { title: 'Search patients', route: '/docs/patients/search-patients' },
+        { label: 'Product Guide', link: '/' },
+        { label: 'Patients', link: '/docs/patients' },
+        { label: 'Search patients', link: '/docs/patients/search-patients' },
     ].map((item, index) => (
-        <Anchor href={item.route} key={index}>
-            {item.title}
+        <Anchor href={item.link} key={index}>
+            {item.label}
         </Anchor>
     ));
 
@@ -111,12 +115,12 @@ const DocsLayout = ({ children }: any) => {
                         {
                             navItems.map((item: any, index: number) => {
                                 return (
-                                    <Accordion.Item label={item.title} key={index} className={`${styles['nav-module']} ${styles[(activeModule == index ? 'active': '')]}`}>
-                                        <NavFeature title={'Overview'} url={`/docs/${item.route}`} isActive={false}></NavFeature>
+                                    <Accordion.Item label={item.label} key={index} className={`${styles['nav-module']} ${styles[(activeModule == index ? 'active': '')]}`}>
+                                        <NavFeature label={'Overview'} url={`/docs/${item.link}`} isActive={false}></NavFeature>
                                         {item.features.map((feature: any, i: number) => {
-                                            const featureRoute = `/docs/${item.route}/${feature.route}`;
+                                            const featurelink = `/docs/${item.link}/${feature.link}`;
                                             return (
-                                                <NavFeature title={feature.title} url={featureRoute} isActive={activeFeature == i} key={i}></NavFeature>
+                                                <NavFeature label={feature.label} url={featureRoute} isActive={activeFeature == i} key={i}></NavFeature>
                                             )
                                         })}
 
@@ -126,7 +130,11 @@ const DocsLayout = ({ children }: any) => {
                         }
                     </Accordion> */}
                     <Navbar.Section grow component={ScrollArea}>
-                        
+                        {
+                            navItems.map((item: any, index: number) => {
+                                <LinksGroup {...item} key={item.label} />
+                            })
+                        }
                     </Navbar.Section>
                 </Navbar>
             }
