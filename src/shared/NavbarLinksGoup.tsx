@@ -3,6 +3,8 @@ import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton, createStyles } f
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { CgLoadbarDoc } from 'react-icons/cg';
 import { IconType } from 'react-icons';
+import { TableOfContentsFloating } from './TableOfContents';
+import { useRouter } from 'next/router'
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -25,17 +27,24 @@ const useStyles = createStyles((theme) => ({
     textDecoration: 'none',
     padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
     paddingLeft: 31,
-    marginLeft: 30,
     fontSize: theme.fontSizes.sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-    borderLeft: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
 
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
       color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     },
+  },
+
+  active: {
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0]
+  },
+
+  linkbox: {
+    marginLeft: 30,
+    borderLeft: `1px solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+    }`,
   },
 
   chevron: {
@@ -47,7 +56,15 @@ interface LinksGroupProps {
   icon: IconType;
   label: string;
   initiallyOpened?: boolean;
-  links?: { label: string; link: string }[];
+  links?: { 
+    label: string; 
+    link: string; 
+    steps: { 
+      label: string, 
+      link: string, 
+      order: number 
+    }[] 
+  }[];
 }
 
 export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksGroupProps) {
@@ -55,15 +72,25 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const ChevronIcon = theme.dir === 'ltr' ? BiChevronRight : BiChevronLeft;
+  const router = useRouter();
   const items = (hasLinks ? links : []).map((link) => (
-    <Text<'a'>
-      component="a"
-      className={classes.link}
-      href={link.link}
-      key={link.label}
-    >
-      {link.label}
-    </Text>
+    <div key={link.label} className={classes.linkbox}>
+      <Text<'a'>
+        component="a"
+        className={`${classes.link} ${(router.asPath.includes(link.link) ? classes.active : null)}`}
+        href={link.link}
+      >
+        {link.label}
+      </Text>
+      {
+        (router.asPath.includes(link.link) 
+          ? (<Box className={classes.linkbox}>
+              <TableOfContentsFloating activeIndex={0} links={link.steps}></TableOfContentsFloating>
+            </Box>)
+          : null
+        )
+      }
+    </div>
   ));
 
   return (
@@ -89,29 +116,5 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
       </UnstyledButton>
       {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
     </>
-  );
-}
-
-const mockdata = {
-  label: 'Releases',
-  icon: CgLoadbarDoc,
-  links: [
-    { label: 'Upcoming releases', link: '/' },
-    { label: 'Previous releases', link: '/' },
-    { label: 'Releases schedule', link: '/' },
-  ],
-};
-
-export function NavbarLinksGroup() {
-  return (
-    <Box
-      sx={(theme) => ({
-        minHeight: 220,
-        padding: theme.spacing.md,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
-      })}
-    >
-      <LinksGroup {...mockdata} />
-    </Box>
   );
 }

@@ -19,9 +19,15 @@ const navItems = [
                 link: "search-patients",
                 steps: [
                     {
-                        label: "Browser URL",
-                        description: `Navigate to "https://my.therapyapp.ch/patients"`
-                    }
+                        label: "Browser URL 1",
+                        link: "#",
+                        order: 1,
+                    },
+                    {
+                        label: "Browser URL 2",
+                        link: "#",
+                        order: 1,
+                    },
                 ]
             },
             {
@@ -30,8 +36,9 @@ const navItems = [
                 link: "add-patients",
                 steps: [
                     {
-                        label: "Browser URL",
-                        description: `Navigate to "https://my.therapyapp.ch/patients/new"`
+                        label: "Browser URL 2",
+                        link: "#",
+                        order: 1,
                     }
                 ]
             },
@@ -50,7 +57,8 @@ const navItems = [
                 steps: [
                     {
                         label: "Browser URL",
-                        description: `Navigate to "https://my.therapyapp.ch/patients"`
+                        link: "#",
+                        order: 1,
                     }
                 ]
             },
@@ -61,7 +69,8 @@ const navItems = [
                 steps: [
                     {
                         label: "Browser URL",
-                        description: `Navigate to "https://my.therapyapp.ch/patients/new"`
+                        link: "#",
+                        order: 1,
                     }
                 ]
             },
@@ -160,11 +169,11 @@ const DocsLayout = ({ children }: any) => {
                     <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                             <Burger
-                            opened={opened}
-                            onClick={() => setOpened((o) => !o)}
-                            size="sm"
-                            color={theme.colors.gray[6]}
-                            mr="xl"
+                                opened={opened}
+                                onClick={() => setOpened((o) => !o)}
+                                size="sm"
+                                color={theme.colors.gray[6]}
+                                mr="xl"
                             />
                         </MediaQuery>
                         <Navigation hasSearch={true}></Navigation>

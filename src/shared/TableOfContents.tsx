@@ -75,10 +75,6 @@ export function TableOfContentsFloating({ activeIndex, links }: TableOfContentsF
 
   return (
     <div>
-      <Group mb="md">
-        <CgPlayListSearch size={18} />
-        <Text>Table of contents</Text>
-      </Group>
       <div className={classes.links}>
         <div
           className={classes.indicator}
