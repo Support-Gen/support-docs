@@ -150,24 +150,6 @@ const DocsLayout = ({ children }: any) => {
                     hidden={!opened}
                     width={{ sm: 250, lg: 350 }}
                 >
-                    {/* <Accordion initialItem={activeModule} iconPosition="right">
-                        {
-                            navItems.map((item: any, index: number) => {
-                                return (
-                                    <Accordion.Item label={item.label} key={index} className={`${styles['nav-module']} ${styles[(activeModule == index ? 'active': '')]}`}>
-                                        <NavFeature label={'Overview'} url={`/docs/${item.link}`} isActive={false}></NavFeature>
-                                        {item.features.map((feature: any, i: number) => {
-                                            const featurelink = `/docs/${item.link}/${feature.link}`;
-                                            return (
-                                                <NavFeature label={feature.label} url={featureRoute} isActive={activeFeature == i} key={i}></NavFeature>
-                                            )
-                                        })}
-
-                                    </Accordion.Item>
-                                );
-                            })
-                        }
-                    </Accordion> */}
                     <Navbar.Section grow className={classes.links} component={ScrollArea}>
                         <div className={classes.linksInner}>{links}</div>
                     </Navbar.Section>

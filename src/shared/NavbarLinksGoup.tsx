@@ -3,7 +3,6 @@ import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton, createStyles } f
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { CgLoadbarDoc } from 'react-icons/cg';
 import { IconType } from 'react-icons';
-// import { Icon as TablerIcon, CalendarStats, ChevronLeft, ChevronRight } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -12,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
     padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
-    fontSize: theme.fontSizes.sm,
+    fontSize: theme.fontSizes.md,
 
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
@@ -62,7 +61,6 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
       className={classes.link}
       href={link.link}
       key={link.label}
-      onClick={(event) => event.preventDefault()}
     >
       {link.label}
     </Text>
@@ -73,15 +71,15 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
         <Group position="apart" spacing={0}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <ThemeIcon variant="light" size={30}>
-              <Icon size={18} />
+            <ThemeIcon variant="light" size={36}>
+              <Icon size={24} />
             </ThemeIcon>
             <Box ml="md">{label}</Box>
           </Box>
           {hasLinks && (
             <ChevronIcon
               className={classes.chevron}
-              size={14}
+              size={24}
               style={{
                 transform: opened ? `rotate(${theme.dir === 'rtl' ? -90 : 90}deg)` : 'none',
               }}
