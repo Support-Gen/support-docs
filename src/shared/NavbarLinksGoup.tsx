@@ -56,10 +56,11 @@ interface LinksGroupProps {
   icon: IconType;
   label: string;
   initiallyOpened?: boolean;
+  prefix: string;
   links?: { 
     label: string; 
     link: string; 
-    steps: { 
+    steps?: { 
       label: string, 
       link: string, 
       order: number 
@@ -67,7 +68,7 @@ interface LinksGroupProps {
   }[];
 }
 
-export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksGroupProps) {
+export function LinksGroup({ icon: Icon, label, initiallyOpened, links, prefix }: LinksGroupProps) {
   const { classes, theme } = useStyles();
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
@@ -78,12 +79,12 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
       <Text<'a'>
         component="a"
         className={`${classes.link} ${(router.asPath.includes(link.link) ? classes.active : null)}`}
-        href={link.link}
+        href={"/docs/" + prefix + "/" + link.link}
       >
         {link.label}
       </Text>
       {
-        (router.asPath.includes(link.link) 
+        (router.asPath.includes(link.link) && link.steps != null
           ? (<Box className={classes.linkbox}>
               <TableOfContentsFloating activeIndex={0} links={link.steps}></TableOfContentsFloating>
             </Box>)

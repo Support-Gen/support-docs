@@ -14,6 +14,10 @@ const navItems = [
         initiallyOpened: true,
         links: [
             {
+                label: "Overview",
+                link: "overview",
+            },
+            {
                 label: "Search patients",
                 description: "Search patients by keywords.",
                 link: "search-patients",
@@ -50,6 +54,10 @@ const navItems = [
         link: "appointments",
         icon: CgNotes,
         links: [
+            {
+                label: "Overview",
+                link: "overview",
+            },
             {
                 label: "Search patients",
                 description: "Search patients by keywords.",
@@ -129,7 +137,7 @@ const NavFeature = ({ label, url, isActive }: { label: string, url: string, isAc
 
 const DocsLayout = ({ children }: any) => {
     const { classes } = useStyles();
-    const links = navItems.map((item) => <LinksGroup {...item} key={item.label} />);
+    const links = navItems.map((item) => <LinksGroup {...item} key={item.label} prefix={item.link} />);
     const [opened, setOpened] = useState(false);
     const theme = useMantineTheme();
     let activeModule = 0;

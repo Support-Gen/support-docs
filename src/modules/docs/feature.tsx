@@ -18,16 +18,6 @@ import {
   SegmentedControl,
 } from "@mantine/core";
 import { NextPage } from "next";
-import { TableOfContentsFloating } from "../../shared/TableOfContents";
-
-const AccordionLabel = ({ index, title }: { index: number; title: string }) => {
-  return (
-    <Group direction="row">
-      <Text style={{ fontSize: "24px", fontWeight: 700 }}>{index}</Text>
-      <Title order={2}>{title}</Title>
-    </Group>
-  );
-};
 
 const Feature: NextPage = () => {
   let feature = {
@@ -46,8 +36,8 @@ const Feature: NextPage = () => {
     <>
       <Title mb={"xs"}>{feature.title}</Title>
       <Text mb={"lg"}>{feature.description}</Text>
-      <Grid>
-        <Grid.Col span={5}>
+      {/* <Grid>
+        <Grid.Col span={5}> */}
           <div>
             {feature.steps.map((step, i) => {
                 return (
@@ -60,8 +50,8 @@ const Feature: NextPage = () => {
                 );
             })}
           </div>
-        </Grid.Col>
-        <Grid.Col span={7}>
+        {/* </Grid.Col> */}
+        {/* <Grid.Col span={7}>
           <Stack align={'center'}>
             <div>
               <SegmentedControl
@@ -85,8 +75,8 @@ const Feature: NextPage = () => {
               ></Image>
             </Box>
           </Stack>
-        </Grid.Col>
-      </Grid>
+        </Grid.Col> */}
+      {/* </Grid> */}
     </>
   );
 };
