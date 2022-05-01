@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createStyles, Box, Text, Group } from '@mantine/core';
+import { createStyles, Box, Text, Group, Title } from '@mantine/core';
 import { CgPlayListSearch } from 'react-icons/cg';
 
 const LINK_HEIGHT = 38;
@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => ({
     }`,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     },
   },
 
@@ -75,6 +75,7 @@ export function TableOfContentsFloating({ activeIndex, links }: TableOfContentsF
 
   return (
     <div>
+      <Title order={2} mb={'xl'}>On this page</Title>
       <div className={classes.links}>
         <div
           className={classes.indicator}
