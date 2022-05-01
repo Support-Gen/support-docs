@@ -77,7 +77,7 @@ const Feature: NextPage = () => {
       display: 'flex'
     },
     text: {
-      fontSize: 18, 
+      fontSize: 20, 
       fontWeight: 500,
       color: theme.colorScheme === "dark" ? theme.colors.gray[6] : theme.colors.gray[8],
     },
@@ -89,6 +89,12 @@ const Feature: NextPage = () => {
     label: {
       fontSize: 46, 
       fontWeight: 800,
+    },
+    tableOfContents: {
+      position: 'sticky',
+      height: 'max-content',
+      maxHeight: 'calc(100vh - 60px)',
+      top: 96
     }
   }));
 
@@ -139,8 +145,8 @@ const Feature: NextPage = () => {
             </div>
           </Container>
         </Grid.Col>
-        <Grid.Col span={3}>
-          <TableOfContentsFloating activeIndex={0} links={feature.steps}></TableOfContentsFloating>
+        <Grid.Col span={3} className={classes.tableOfContents}>
+            <TableOfContentsFloating activeIndex={0} links={feature.steps}></TableOfContentsFloating>
         </Grid.Col>
       </Grid>
     </>
