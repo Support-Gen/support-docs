@@ -105,6 +105,7 @@ const useStyles = createStyles((theme) => ({
   navbar: {
     backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
     paddingInline: theme.spacing.md,
+    borderRight: 0,
     
     '&:before': {
         position: 'absolute',
@@ -145,7 +146,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   linksInner: {
-    paddingTop: theme.spacing.xl,
+    paddingTop: 32,
     paddingBottom: theme.spacing.xl,
   },
 
@@ -158,28 +159,6 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const NavFeature = ({
-  label,
-  url,
-  isActive,
-}: {
-  label: string;
-  url: string;
-  isActive: boolean;
-}) => {
-  return (
-    <Anchor href={url} variant={"text"}>
-      <Box
-        className={`${styles["nav-feature"]} ${
-          isActive ? styles["active"] : ""
-        }`}
-        style={{ paddingBlock: 5, paddingInline: 20 }}
-      >
-        <Text component="span">{label}</Text>
-      </Box>
-    </Anchor>
-  );
-};
 
 const DocsLayout = ({ children }: any) => {
   const { classes } = useStyles();
@@ -188,16 +167,6 @@ const DocsLayout = ({ children }: any) => {
   ));
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
-
-  const items = [
-    { label: "Product Guide", link: "/" },
-    { label: "Patients", link: "/docs/patients" },
-    { label: "Search patients", link: "/docs/patients/search-patients" },
-  ].map((item, index) => (
-    <Anchor href={item.link} key={index}>
-      {item.label}
-    </Anchor>
-  ));
 
   return (
     <AppShell
@@ -224,7 +193,7 @@ const DocsLayout = ({ children }: any) => {
         </Navbar>
       }
       header={
-        <Header height={60} px="md">
+        <Header height={60} px={40}>
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
           >

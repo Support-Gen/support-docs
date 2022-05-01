@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => ({
     }`,
 
     '&:hover': {
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[6],
     },
   },
 

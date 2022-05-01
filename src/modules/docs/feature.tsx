@@ -69,12 +69,13 @@ const Feature: NextPage = () => {
 
   const useStyles = createStyles((theme) => ({
     step: {
-      fontSize: 28, 
+      fontSize: 24, 
       color: theme.colorScheme === "dark" ? theme.colors.gray[6] : theme.colors.gray[8],
+      fontWeight: 800
+    },
+    stepLabel: {
+      fontSize: 32, 
       fontWeight: 800,
-      alignItems: 'center', 
-      justifyContent:'center', 
-      display: 'flex'
     },
     text: {
       fontSize: 20, 
@@ -89,6 +90,7 @@ const Feature: NextPage = () => {
     label: {
       fontSize: 46, 
       fontWeight: 800,
+      color: theme.colors.blue[6]
     },
     tableOfContents: {
       position: 'sticky',
@@ -104,45 +106,40 @@ const Feature: NextPage = () => {
     <>
       <Grid mt={20}>
         <Grid.Col span={9}>
-          <Container size={'md'}>
+          <Container size={'sm'}>
             <Title mb={"xs"} order={1} className={classes.label}>{feature.label}</Title>
-            <Text mb={"xl"} className={classes.description} >{feature.description}</Text>
-            <div>
-              {feature.steps.map((step, i) => {
-                  return (
-                  <div key={i} style={{ marginBottom: 32}}>
-                      <Group mb={'sm'}>
-                        <div className={classes.step}>{i + 1}</div>
-                        <Title order={2} style={{ fontSize: 32, fontWeight: 800 }}>{step.label}</Title>
-                      </Group>
-                      <Text mb={"lg"} className={classes.text}>{step.description}</Text>
-                      <Stack align={'flex-start'}>
-                        <div>
-                          <SegmentedControl
-                            mb={"md"}
-                            data={[
-                              { value: "web", label: "Web" },
-                              { value: "mobile", label: "Mobile" },
-                            ]}
-                          />
-                        </div>
-                        <Box
-                          sx={() => ({
-                            borderRadius: '20px',
-                            boxShadow: '0px 8px 18px #00000020'
-                          })}
-                        >
-                          <Image
-                            src="/example-page-1.png"
-                            alt="example img"
-                            radius={'lg'}
-                          ></Image>
-                        </Box>
-                      </Stack>
-                  </div>
-                  );
-              })}
-            </div>
+            <Text mb={32} className={classes.description} >{feature.description}</Text>
+            {feature.steps.map((step, i) => {
+                return (
+                <div key={i} style={{ marginBottom: 56}}>
+                    <Group mb={'sm'}>
+                      <div className={classes.step}>{i + 1}.</div>
+                      <Title order={2} className={classes.stepLabel}>{step.label}</Title>
+                    </Group>
+                    <Text mb={"lg"} className={classes.text}>{step.description}</Text>
+                    <Stack align={'flex-start'}>
+                      <SegmentedControl
+                        data={[
+                          { value: "web", label: "Web" },
+                          { value: "mobile", label: "Mobile" },
+                        ]}
+                      />
+                      <Box
+                        sx={() => ({
+                          borderRadius: '20px',
+                          boxShadow: '0px 8px 18px #00000020'
+                        })}
+                      >
+                        <Image
+                          src="/example-page-1.png"
+                          alt="example img"
+                          radius={'lg'}
+                        ></Image>
+                      </Box>
+                    </Stack>
+                </div>
+                );
+            })}
           </Container>
         </Grid.Col>
         <Grid.Col span={3} className={classes.tableOfContents}>

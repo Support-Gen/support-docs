@@ -6,8 +6,8 @@ const Navigation = ({ hasSearch } : { hasSearch?: boolean } ) => {
         <Box component="nav" style={{ paddingBlock: 15, width: '100%' }}>
             <Group direction="row" position="apart">
                 <Group direction="row">
-                    <Box sx={() => ({width: '300px'})}>
-                        <Anchor href="/" variant={'text'} weight={'bold'}>Product Guide</Anchor>
+                    <Box sx={() => ({width: '490px'})}>
+                        <Anchor href="/" variant={'text'} weight={'bold'}>Product Docs</Anchor>
                     </Box>
                     {
                         (hasSearch ? 
@@ -23,9 +23,9 @@ const Navigation = ({ hasSearch } : { hasSearch?: boolean } ) => {
                         )
                     }
                 </Group>
-                <Group direction="row">
+                {/* <Group direction="row">
                     <Anchor variant={'text'}>Home</Anchor>
-                </Group>
+                </Group> */}
             </Group>
         </Box>
     );
