@@ -96,7 +96,7 @@ const Feature: NextPage = () => {
 
   return (
     <>
-      <Grid>
+      <Grid mt={20}>
         <Grid.Col span={9}>
           <Container size={'md'}>
             <Title mb={"xs"} order={1} className={classes.label}>{feature.label}</Title>

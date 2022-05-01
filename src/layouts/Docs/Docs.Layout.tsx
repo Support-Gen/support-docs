@@ -242,7 +242,6 @@ const DocsLayout = ({ children }: any) => {
         </Header>
       }
     >
-        <Breadcrumbs mb={"lg"} ml={130}>{items}</Breadcrumbs>
         {children}
     </AppShell>
   );
