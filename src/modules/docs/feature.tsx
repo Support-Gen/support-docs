@@ -110,6 +110,29 @@ const Feature: NextPage = () => {
                         <Title order={2} style={{ fontSize: 32, fontWeight: 800 }}>{step.label}</Title>
                       </Group>
                       <Text mb={"lg"} className={classes.text}>{step.description}</Text>
+                      <Stack align={'flex-start'}>
+                        <div>
+                          <SegmentedControl
+                            mb={"md"}
+                            data={[
+                              { value: "web", label: "Web" },
+                              { value: "mobile", label: "Mobile" },
+                            ]}
+                          />
+                        </div>
+                        <Box
+                          sx={() => ({
+                            borderRadius: '20px',
+                            boxShadow: '0px 8px 18px #00000020'
+                          })}
+                        >
+                          <Image
+                            src="/example-page-1.png"
+                            alt="example img"
+                            radius={'lg'}
+                          ></Image>
+                        </Box>
+                      </Stack>
                   </div>
                   );
               })}
