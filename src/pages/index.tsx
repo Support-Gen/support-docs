@@ -8,7 +8,7 @@ import Home from '../modules/home/home'
 const HomePage: NextPage = () => {
   return (
     <NarrowLayout>
-        <Home></Home>
+      <Home></Home>
     </NarrowLayout>
   )
 }

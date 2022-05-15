@@ -118,12 +118,6 @@ const Feature: NextPage = () => {
                     </Group>
                     <Text mb={"lg"} className={classes.text}>{step.description}</Text>
                     <Stack align={'flex-start'}>
-                      <SegmentedControl
-                        data={[
-                          { value: "web", label: "Web" },
-                          { value: "mobile", label: "Mobile" },
-                        ]}
-                      />
                       <Box
                         sx={() => ({
                           borderRadius: '20px',
